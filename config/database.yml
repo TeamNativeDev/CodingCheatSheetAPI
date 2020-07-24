@@ -23,22 +23,13 @@ default: &default
 
 development:
   <<: *default
-<<<<<<< HEAD
-  database: FlatironCheetSheetAPI_development
-=======
   database: FlatironCheatSheetAPI_development
->>>>>>> 8848ae23210746c8806c28fd4a6a201dded3cda7
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-<<<<<<< HEAD
-  #username: CalendarMeAPI
-=======
   #username: FlatironCheatSheetAPI
-
->>>>>>> 8848ae23210746c8806c28fd4a6a201dded3cda7
   # The password associated with the postgres role (username).
   #password:
   # Connect on a TCP socket. Omitted by default since the client uses a
