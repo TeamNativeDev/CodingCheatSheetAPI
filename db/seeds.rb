@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-['javaScript', 'Ruby', 'Rails', 'Html', 'Css'].each do |category|
+['JavaScript', 'Ruby', 'Rails', 'Html', 'Css'].each do |category|
   
-  Category.creeate(title: category)
+  Category.create(title: category)
 end
