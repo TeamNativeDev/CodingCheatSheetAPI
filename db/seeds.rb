@@ -9,5 +9,5 @@
 
 ['javaScript', 'Ruby', 'Rails', 'Html', 'Css'].each do |category|
   
-  Category.creeate(title: category)
+  Category.create(title: category)
 end
