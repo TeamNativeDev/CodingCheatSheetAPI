@@ -33,3 +33,5 @@ rails = Category.find_by(title: 'Ruby on Rails')
 rails.tips.create(title:'test tip', description: 'first tip test', user: user, code_snippet: "rails new <YOURAPPNAME> --api --database=postgres")
 
 tip = Tip.first
+
+Vote.create(user:user, tip: tip)
