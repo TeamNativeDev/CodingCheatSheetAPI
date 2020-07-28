@@ -7,9 +7,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Vote.destroy_all
+Tip.destroy_all
 Category.destroy_all
 User.destroy_all
-Tip.destroy_all
 
 categories = [
   { title: 'Ruby', color: '#CC0000', imageUrl: '' },
@@ -20,25 +21,27 @@ categories = [
   { title: 'React', color: '#61DBFB', imageUrl: '' }
 ]
 
-user =
-  User.create(
-    email: 'test1@test.com',
-    password: '0000',
-    username: 'test1',
-    bio: "I'm boring of be always a test case"
-  )
+users = []
 
-categories.each { |obj| Category.create(obj) }
+  10.times do |n|
+    users << User.create(
+      email: "test#{n}@test.com",
+      password: '0000',
+      username: "test#{n}",
+      bio: "I'm boring of be always a test case number #{n}"
+    )
+  end
 
-rails = Category.find_by(title: 'Ruby on Rails')
+categories.each do |obj|
+  cat = Category.create(obj)
+  20.times do
+    cat.tips.create(
+      title: 'test tip',
+      description: 'first tip test',
+      user: users.sample,
+      code_snippet: 'rails new <YOURAPPNAME> --api --database=postgres'
+    )
+  end
+end
 
-rails.tips.create(
-  title: 'test tip',
-  description: 'first tip test',
-  user: user,
-  code_snippet: 'rails new <YOURAPPNAME> --api --database=postgres'
-)
-
-tip = Tip.first
-
-Vote.create(user: user, tip: tip)
+# Vote.create(user: user, tip: tip)

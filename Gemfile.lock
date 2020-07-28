@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: 66e6113c29438e70bcc6a031971efe60ae06b71f
+  branch: master
+  specs:
+    faker (2.13.0)
+      i18n (>= 1.6, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -119,7 +127,6 @@ GEM
     pg (1.2.3)
     pg (1.2.3-x64-mingw32)
     pg (1.2.3-x86-mingw32)
-    prettier (0.19.0)
     puma (4.3.5)
       nio4r (~> 2.0)
     puma (4.3.5-java)
@@ -197,10 +204,10 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   dotenv-rails
+  faker!
   jwt
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
-  prettier
   puma (~> 4.1)
   rack-cors
   rails (~> 6.0.3, >= 6.0.3.2)
