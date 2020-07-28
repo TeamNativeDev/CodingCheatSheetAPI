@@ -23,25 +23,29 @@ categories = [
 
 users = []
 
-  10.times do |n|
-    users << User.create(
-      email: "test#{n}@test.com",
-      password: '0000',
-      username: "test#{n}",
-      bio: "I'm boring of be always a test case number #{n}"
-    )
-  end
+10.times do |n|
+  users << User.create(
+    email: Faker::Internet.email,
+    password: Faker::Internet.password,
+    username: Faker::Internet.username(specifier: 5..10),
+    bio: "I'm boring of be always a test case number #{n}"
+  )
+end
 
 categories.each do |obj|
   cat = Category.create(obj)
   20.times do
     cat.tips.create(
-      title: 'test tip',
-      description: 'first tip test',
+      title: Faker::Lorem.sentence(word_count: 3, supplemental: true),
+      description: Faker::Lorem.paragraph_by_chars,
       user: users.sample,
-      code_snippet: 'rails new <YOURAPPNAME> --api --database=postgres'
+      code_snippet: Faker::Lorem.paragraph_by_chars(number: 30),
+      more_info: Faker::Internet.url
     )
   end
 end
 
-# Vote.create(user: user, tip: tip)
+tips = Tip.all
+250.times do
+  Vote.create(user: users.sample, tip: tips.sample)
+end
