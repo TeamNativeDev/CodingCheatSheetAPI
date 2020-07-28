@@ -5,5 +5,4 @@ class Category < ApplicationRecord
   def all_votes
     votes.count
   end
-
 end

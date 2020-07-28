@@ -18,20 +18,27 @@ categories = [
   { title: 'javaScript', color: '#F0DB4F', imageUrl: '' },
   { title: 'Ruby on Rails', color: '#CC0000', imageUrl: '' },
   { title: 'React', color: '#61DBFB', imageUrl: '' }
-
 ]
 
-user = User.create(email:'test1@test.com', password:'0000', username:'test1', bio:"I'm boring of be always a test case" )
+user =
+  User.create(
+    email: 'test1@test.com',
+    password: '0000',
+    username: 'test1',
+    bio: "I'm boring of be always a test case"
+  )
 
-
-categories.each do |obj|
-   Category.create(obj)
-end
+categories.each { |obj| Category.create(obj) }
 
 rails = Category.find_by(title: 'Ruby on Rails')
 
-rails.tips.create(title:'test tip', description: 'first tip test', user: user, code_snippet: "rails new <YOURAPPNAME> --api --database=postgres")
+rails.tips.create(
+  title: 'test tip',
+  description: 'first tip test',
+  user: user,
+  code_snippet: 'rails new <YOURAPPNAME> --api --database=postgres'
+)
 
 tip = Tip.first
 
-Vote.create(user:user, tip: tip)
+Vote.create(user: user, tip: tip)
