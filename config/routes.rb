@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :categories, only: %i[index show create]
       resources :tips, only: %i[create]
+      post '/sign_up' => 'sessions#sign_up'
+      post '/login' => 'sessions#login'
     end
   end
 end
