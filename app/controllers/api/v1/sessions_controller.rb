@@ -32,7 +32,3 @@ private
 def login_params
   params.require(:user).permit(:username, :password)
 end
-
-def sign_up_params
-  params.require(:user).permit(:username, :password, :email)
-end
