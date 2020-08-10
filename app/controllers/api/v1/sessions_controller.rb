@@ -1,4 +1,5 @@
 class Api::V1::SessionsController < ApplicationController
+  skip_before_action :authorized, only: %i[login sign_up]
   def sign_up
     @user = User.new(user_params)
     if @user.save
@@ -14,9 +15,10 @@ class Api::V1::SessionsController < ApplicationController
 
   def login
     @user = User.find_by_username(login_params[:username])
+
     if @user&.authenticate(login_params[:password])
-      # TODO: Implement JWT token
-      render json: { user: @user, jwt: 'hello', status: :accepted }
+      token = encode_token(user_id: @user.id)
+      render json: { user: @user, jwt: token, status: :accepted }
     else
       render json: {
         error: 'Unable to authenticate',
