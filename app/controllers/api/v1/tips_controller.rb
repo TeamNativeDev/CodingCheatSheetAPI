@@ -2,11 +2,11 @@
 
 class Api::V1::TipsController < ApplicationController
   def create
-    @tip = Tip.new(tip_params)
-    if @tip.save 
-      render json: {message: 'ok', data: TipSerializer.new(@tip)}
+    @tip = current_user.tips.build(tip_params)
+    if @tip.save
+      render json: { message: 'Tip Create Successfully', data: TipSerializer.new(@tip), status: :accepted }
     else
-      render json: {message: 'notOk'}
+      render json: { message: 'Unable to Save the Tip', error: true, status: :bad_request }
     end
     # debugheyger
   end
@@ -14,6 +14,6 @@ class Api::V1::TipsController < ApplicationController
   private
 
   def tip_params
-    params.require(:tip).permit(:category_id, :title, :description, :code_snippet, :user_id, :more_info)
+    params.require(:tip).permit(:category_id, :title, :description, :code_snippet, :more_info)
   end
 end
