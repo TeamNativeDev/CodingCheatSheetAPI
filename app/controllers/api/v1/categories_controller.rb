@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::CategoriesController < ApplicationController
+  skip_before_action :authorized, only: %i[index show]
   def index
     categories = Category.all
     render json: categories
@@ -8,7 +9,6 @@ class Api::V1::CategoriesController < ApplicationController
 
   def show
     category = Category.find(params[:id])
-
     if category
       render json: category.tips
     else
