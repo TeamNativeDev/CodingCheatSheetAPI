@@ -1,7 +1,7 @@
 class Api::V1::SessionsController < ApplicationController
   skip_before_action :authorized, only: %i[login sign_up]
   def sign_up
-    @user = User.new(user_params)
+    @user = User.new(sign_up_params)
     if @user.save
       render json: { user: @user, status: :accepted }
     else
