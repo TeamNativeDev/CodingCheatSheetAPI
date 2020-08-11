@@ -3,7 +3,8 @@ class Api::V1::SessionsController < ApplicationController
   def sign_up
     @user = User.new(sign_up_params)
     if @user.save
-      render json: { user: @user, status: :accepted }
+      token = encode_token(user_id: @user.id)
+      render json: { user: @user, jwt: token, status: :accepted }
     else
       render json: {
         error: 'Unable to save entity',
