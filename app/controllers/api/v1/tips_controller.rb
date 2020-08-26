@@ -11,9 +11,13 @@ class Api::V1::TipsController < ApplicationController
     # debugheyger
   end
 
+  def update 
+  debugger
+  end
+
   private
 
   def tip_params
-    params.require(:tip).permit(:category_id, :title, :description, :code_snippet, :more_info)
+    params.require(:tip).permit(:category_id, :title, :description, :code_snippet, :more_info, :votes)
   end
 end
