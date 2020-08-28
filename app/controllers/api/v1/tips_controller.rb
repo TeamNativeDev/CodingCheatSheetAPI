@@ -8,11 +8,11 @@ class Api::V1::TipsController < ApplicationController
     else
       render json: { message: 'Unable to Save the Tip', error: true, status: :bad_request }
     end
-    # debugheyger
   end
 
-  def update 
-  debugger
+  def update
+    @tip = Tip.find(params[:id])
+    @tip.update_votes(current_user) if params[:type] == 'updateVote'
   end
 
   private
