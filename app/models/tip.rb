@@ -10,4 +10,13 @@ class Tip < ApplicationRecord
     # votes.map(&:id) for better performance use below
     votes.pluck(:user_id)
   end
+
+  def update_votes(current_user)
+    @vote = votes.find_by(user_id: current_user.id)
+    if @vote
+      @vote.destroy
+    else
+      votes.create!(user_id: current_user.id)
+    end
+  end
 end
