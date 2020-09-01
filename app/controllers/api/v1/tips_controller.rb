@@ -12,7 +12,12 @@ class Api::V1::TipsController < ApplicationController
 
   def update
     @tip = Tip.find(params[:id])
-    @tip.update_votes(current_user) if params[:type] == 'updateVote'
+    if params[:type] == 'updateVote'
+      @tip.update_votes(current_user)
+    else
+      @tip.update(tip_params)
+    end
+    render json: { message: 'Tip Create Successfully', data: TipSerializer.new(@tip), status: :accepted }
   end
 
   private
