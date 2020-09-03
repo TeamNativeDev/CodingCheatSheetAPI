@@ -19,8 +19,9 @@ class Api::V1::TipsController < ApplicationController
         @tip.update(tip_params)
       end
       render json: { message: 'Tip Create Successfully', data: TipSerializer.new(@tip), status: :accepted }
+    else
+      render json: { message: 'Tip not Found', error: true, status: :bad_request }
     end
-    render json: { message: 'Tip not Found', error: true, status: :bad_request }
   end
 
   private
